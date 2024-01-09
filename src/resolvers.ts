@@ -1,11 +1,17 @@
 import fs from 'fs';
 import path from 'path';
 import { Post } from "./types";
+import { StreamClient } from "getstream";
+
+const { STREAM_API_KEY, STREAM_CLIENT_ID } = process.env;
 
 const dataPath = path.join(__dirname, '../data.json');
+const steamClient = new StreamClient(
+
+);
 
 function readData(): { posts: Post[] } {
-  return JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+    steamClient.feed("user", "user-id");
 }
 
 function writeData(data: { posts: Post[] }) {
